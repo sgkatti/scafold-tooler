@@ -1,0 +1,44 @@
+[
+  {
+    "id": "optical-path-planner",
+    "title": "Optical Path Planner",
+    "description": "Design and visualize optical paths for systems and assemblies.",
+    "icon": "/icons/optic.svg",
+    "link": "#"
+  },
+  {
+    "id": "ospf-analyzer",
+    "title": "OSPF Analyzer",
+    "description": "Analyze optical signal path files and reports.",
+    "icon": "/icons/graph.svg",
+    "link": "#"
+  },
+  {
+    "id": "pm-data-visualizer",
+    "title": "PM Data Visualizer",
+    "description": "Visualize polarization-maintaining fiber datasets.",
+    "icon": "/icons/chart.svg",
+    "link": "#"
+  },
+  {
+    "id": "submarine-span-calc",
+    "title": "Submarine Span Calculator",
+    "description": "Quick calculations for span loading and margins.",
+    "icon": "/icons/ship.svg",
+    "link": "#"
+  },
+  {
+    "id": "sensitivity-study",
+    "title": "Sensitivity Study",
+    "description": "Run parameter sweeps and compare outcomes.",
+    "icon": "/icons/wave.svg",
+    "link": "#"
+  },
+  {
+    "id": "component-db",
+    "title": "Component DB",
+    "description": "A searchable registry of optical components and specs.",
+    "icon": "/icons/box.svg",
+    "link": "#"
+  }
+]
