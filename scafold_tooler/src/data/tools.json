@@ -4,41 +4,48 @@
     "title": "Optical Path Planner",
     "description": "Design and visualize optical paths for systems and assemblies.",
     "icon": "/icons/optic.svg",
-    "link": "#"
-  },
-  {
-    "id": "ospf-analyzer",
-    "title": "OSPF Analyzer",
-    "description": "Analyze optical signal path files and reports.",
-    "icon": "/icons/graph.svg",
-    "link": "#"
+    "category": "Optical"
   },
   {
     "id": "pm-data-visualizer",
     "title": "PM Data Visualizer",
-    "description": "Visualize polarization-maintaining fiber datasets.",
+    "description": "Visualize PM datasets (Pre-FEC BER, OSNR, CD, Power).",
     "icon": "/icons/chart.svg",
-    "link": "#"
+    "category": "Optical"
   },
   {
-    "id": "submarine-span-calc",
+    "id": "tapi-yang-generator",
+    "title": "TAPI / YANG Model Generator",
+    "description": "Generate TAPI / YANG snippets from nodes & links.",
+    "icon": "/icons/code.svg",
+    "category": "Optical"
+  },
+  {
+    "id": "ospf-analyzer",
+    "title": "OSPF Path Analyzer",
+    "description": "Parse OSPF database text and visualize LSAs & paths.",
+    "icon": "/icons/graph.svg",
+    "category": "IP"
+  },
+  {
+    "id": "static-route-visualizer",
+    "title": "Static Route Visualizer",
+    "description": "Show static routes and simulate fallback path preferences.",
+    "icon": "/icons/routes.svg",
+    "category": "IP"
+  },
+  {
+    "id": "submarine-span-calculator",
     "title": "Submarine Span Calculator",
-    "description": "Quick calculations for span loading and margins.",
+    "description": "Compute amplifiers, spacing, and residual OSNR for submarine spans.",
     "icon": "/icons/ship.svg",
-    "link": "#"
+    "category": "Submarine"
   },
   {
-    "id": "sensitivity-study",
-    "title": "Sensitivity Study",
-    "description": "Run parameter sweeps and compare outcomes.",
+    "id": "fiber-osnr-estimator",
+    "title": "Fiber OSNR Budget Estimator",
+    "description": "Estimate OSNR for a link given launch power, amplifier NF and spans.",
     "icon": "/icons/wave.svg",
-    "link": "#"
-  },
-  {
-    "id": "component-db",
-    "title": "Component DB",
-    "description": "A searchable registry of optical components and specs.",
-    "icon": "/icons/box.svg",
-    "link": "#"
+    "category": "Submarine"
   }
 ]

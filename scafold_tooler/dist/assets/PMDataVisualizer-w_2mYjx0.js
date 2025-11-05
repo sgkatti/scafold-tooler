@@ -1,0 +1,8 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/PMDataChart-DQ_YrJ0m.js","assets/index-D4MKKhwQ.js","assets/index-D6tCuJqT.css"])))=>i.map(i=>d[i]);
+import{r as d,j as s,m as x,R as b,_ as g}from"./index-D4MKKhwQ.js";const j=b.lazy(()=>g(()=>import("./PMDataChart-DQ_YrJ0m.js"),__vite__mapDeps([0,1,2]))),m=c=>{const n=c.trim().split(`
+`),l=n[0].split(",").map(t=>t.trim().toLowerCase());return n.slice(1).map(t=>{const a=t.split(","),r={};return l.forEach((i,o)=>{r[i]=isNaN(Number(a[o]))?a[o]:Number(a[o])}),r})},h=`time,preFec,osnr,cd,power
+0,1e-3,24,0.1,-3
+1,5e-4,25,0.12,-2.8
+2,2e-4,26,0.11,-2.5
+3,1.2e-4,27,0.09,-2.2
+4,1e-4,27.5,0.08,-2.1`,w=()=>{const[c,n]=d.useState(h),[l,t]=d.useState(m(h)),a=()=>{try{const e=m(c);t(e)}catch{}},r=18,i=.001,o=l.map(e=>({badBer:(e.preFec??0)>i,badOsnr:(e.osnr??0)<r})),u=l.map((e,p)=>({index:p,time:e.time??String(p),preFecLog:e.preFec?-Math.log10(e.preFec):null,osnr:e.osnr??null,power:e.power??null}));return s.jsxs(x.div,{initial:{opacity:0},animate:{opacity:1},className:"space-y-4",children:[s.jsxs("div",{children:[s.jsx("label",{className:"block text-sm text-gray-600",children:"Paste CSV (time,preFec,osnr,cd,power)"}),s.jsx("textarea",{value:c,onChange:e=>n(e.target.value),rows:6,className:"w-full mt-2 p-2 rounded border bg-white dark:bg-gray-800"}),s.jsx("div",{className:"mt-2",children:s.jsx("button",{onClick:a,className:"px-4 py-2 bg-teal-500 text-white rounded",children:"Render"})})]}),s.jsx("div",{className:"grid grid-cols-1 gap-4",children:s.jsx(d.Suspense,{fallback:s.jsx("div",{className:"p-4 text-center",children:"Loading charts…"}),children:s.jsx(j,{data:u,alerts:o,osnrThreshold:r})})})]})};export{w as default};
