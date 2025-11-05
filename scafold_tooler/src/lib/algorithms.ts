@@ -90,16 +90,68 @@ export function dijkstraCost(nodes: string[], links: { a: string; b: string; cos
 export function parseOSPF(txt: string) {
   const links: { a: string; b: string; cost: number }[] = []
   const nodes = new Set<string>()
-  txt.split('\n').forEach((l) => {
-    const m = l.match(/LSA:\s*(\S+)\s*->\s*(\S+)(?:\s*cost=(\d+))?/) 
+  const matched: string[] = []
+  const skipped: string[] = []
+  const seen = new Set<string>()
+
+  const ipv4 = "(?:\\d{1,3}(?:\\.\\d{1,3}){3})"
+  const lsaRe = new RegExp(`LSA:\\s*(\\S+)\\s*->\\s*(\\S+)(?:\\s*cost=(\\d+))?`)
+  // Matches lines containing two IPv4 addresses (first two columns are typically Link ID and ADV Router)
+  const ipPairRe = new RegExp(`(${ipv4})\\s+(${ipv4})`)
+
+  txt.split('\n').forEach((raw) => {
+    const l = raw.trim()
+    if (!l) return
+
+    // 1) legacy LSA: A -> B cost=10
+    const m = l.match(lsaRe)
     if (m) {
       const a = m[1]
       const b = m[2]
       const cost = m[3] ? Number(m[3]) : 1
       nodes.add(a)
       nodes.add(b)
-      links.push({ a, b, cost })
+      const key = [a, b].sort().join('|')
+      if (!seen.has(key)) {
+        seen.add(key)
+        links.push({ a, b, cost })
+      }
+      matched.push(raw)
+      return
     }
+
+    // 2) Cisco/FRR `show ip ospf database` style lines where first two columns are IPs
+    const m2 = l.match(ipPairRe)
+    if (m2) {
+      const a = m2[1]
+      const b = m2[2]
+      // If a and b are identical (advertising router == link id), skip creating self-link
+      if (a === b) return
+      // try to find a numeric token after the matched pair (often 'Age' or 'Link count') and use as cost
+      let cost = 1
+      try {
+        const rest = raw.slice((m2.index || 0) + m2[0].length)
+        const nm = rest.match(/\b(\d{1,6})\b/)
+        if (nm) {
+          const n = Number(nm[1])
+          if (!Number.isNaN(n) && n > 0 && n < 10000) cost = n
+        }
+      } catch (e) {
+        /* ignore */
+      }
+      nodes.add(a)
+      nodes.add(b)
+      const key = [a, b].sort().join('|')
+      if (!seen.has(key)) {
+        seen.add(key)
+        links.push({ a, b, cost })
+      }
+      matched.push(raw)
+      return
+    }
+    // otherwise record as skipped line (useful for preview/debug)
+    skipped.push(raw)
   })
-  return { nodes: Array.from(nodes), links }
+
+  return { nodes: Array.from(nodes), links, matched, skipped }
 }

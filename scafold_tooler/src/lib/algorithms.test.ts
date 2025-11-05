@@ -33,4 +33,15 @@ describe('algorithms', () => {
     expect(p.links.find((l) => l.a === 'A' && l.b === 'B')?.cost).toBe(5)
     expect(p.links.find((l) => l.a === 'B' && l.b === 'C')?.cost).toBe(1)
   })
+
+  it('parseOSPF handles show ip ospf database snippet', () => {
+    const txt = `10.199.242.7    10.199.242.14   1129 0x8000007a 0x960e 10.199.242.7/32\n10.199.242.8    10.199.242.14   1710 0x8000007a 0xa067 10.199.242.8/32`
+    const p = parseOSPF(txt)
+    // nodes should include both IPs
+    expect(p.nodes).toEqual(expect.arrayContaining(['10.199.242.7', '10.199.242.14', '10.199.242.8']))
+    // links should include an edge between 10.199.242.7 and 10.199.242.14 with cost 1129
+    const link = p.links.find((l) => (l.a === '10.199.242.7' && l.b === '10.199.242.14') || (l.a === '10.199.242.14' && l.b === '10.199.242.7'))
+    expect(link).toBeDefined()
+    expect(link?.cost).toBe(1129)
+  })
 })
