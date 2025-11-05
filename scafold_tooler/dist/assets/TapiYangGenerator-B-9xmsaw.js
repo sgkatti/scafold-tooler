@@ -1,0 +1,7 @@
+import{r,j as e,m}from"./index-D4MKKhwQ.js";const p=`{
+  "nodes": [
+    {"id":"A","label":"Node A"},
+    {"id":"B","label":"Node B"}
+  ],
+  "links": [{"a":"A","b":"B","length_km":100}]
+}`,b=()=>{const[n,d]=r.useState(p),[s,l]=r.useState(""),i=()=>{try{const t=JSON.parse(n),a={tapi:{topology:{nodes:t.nodes,links:t.links}}};l(JSON.stringify(a,null,2))}catch{l("// invalid JSON")}},c=()=>{const t=new Blob([s],{type:"application/json"}),a=URL.createObjectURL(t),o=document.createElement("a");o.href=a,o.download="tapi_model.json",o.click(),URL.revokeObjectURL(a)};return e.jsxs(m.div,{initial:{opacity:0},animate:{opacity:1},className:"space-y-4",children:[e.jsxs("div",{children:[e.jsx("label",{className:"block text-sm text-gray-600",children:"Nodes/Links JSON"}),e.jsx("textarea",{value:n,onChange:t=>d(t.target.value),rows:6,className:"w-full mt-2 p-2 rounded border bg-white dark:bg-gray-800"}),e.jsxs("div",{className:"mt-2 flex gap-2",children:[e.jsx("button",{onClick:i,className:"px-4 py-2 bg-teal-500 text-white rounded",children:"Generate"}),e.jsx("button",{onClick:c,className:"px-4 py-2 bg-blue-600 text-white rounded",disabled:!s,children:"Download JSON"})]})]}),e.jsxs("div",{className:"bg-white dark:bg-gray-800 p-4 rounded shadow",children:[e.jsx("h4",{className:"font-medium",children:"Generated TAPI / YANG snippet"}),e.jsx("pre",{className:"mt-2 text-sm overflow-auto max-h-64 bg-gray-50 dark:bg-gray-900 p-2 rounded",children:s||"// result will appear here"})]})]})};export{b as default};
